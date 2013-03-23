@@ -124,7 +124,7 @@ function handleSubmit(event, container, options) {
 
   var defaults = {
     type: form.method.toUpperCase(),
-    url: form.action,
+    url: form.action || window.location.href,
     data: $(form).serializeArray(),
     container: $(form).attr('data-pjax'),
     target: form,
