@@ -269,6 +269,9 @@ function pjax(options) {
     }
 
     if (container.title) document.title = container.title
+
+    fire('pjax:unload', [context, options])
+
     context.html(container.contents)
     executeScriptTags(container.scripts)
 
@@ -425,6 +428,8 @@ function onPjaxPopstate(event) {
 
       if (contents) {
         container.trigger('pjax:start', [null, options])
+
+        fire('pjax:unload', [container, options])
 
         if (state.title) document.title = state.title
         container.html(contents)
