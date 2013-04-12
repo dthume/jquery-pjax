@@ -302,6 +302,7 @@ function pjax(options) {
     }
 
     fire('pjax:success', [data, status, xhr, options])
+    initialPop = false
   }
 
 
@@ -429,7 +430,7 @@ function onPjaxPopstate(event) {
       if (contents) {
         container.trigger('pjax:start', [null, options])
 
-        fire('pjax:unload', [container, options])
+        container.trigger('pjax:unload', [container, options])
 
         if (state.title) document.title = state.title
         container.html(contents)
