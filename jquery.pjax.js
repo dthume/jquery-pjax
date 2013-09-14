@@ -121,11 +121,13 @@ function handleSubmit(event, container, options) {
   if (form.tagName.toUpperCase() !== 'FORM')
     throw "$.pjax.submit requires a form element"
 
+  var jqform = $(form);
+	
   var defaults = {
-    type: form.method.toUpperCase(),
-    url: form.action || window.location.href,
-    data: $(form).serializeArray(),
-    container: $(form).attr('data-pjax'),
+    type: jqform.attr("method").toUpperCase(),
+    url: jqform.attr("action") || window.location.href,
+    data: jqform.serializeArray(),
+    container: jqform.attr('data-pjax'),
     target: form
   }
 
